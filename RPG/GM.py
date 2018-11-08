@@ -17,6 +17,8 @@ class Campaign(object):
 
         self.description  = description
 
+        print (description)
+
     def Instructions(self, instructions):
 
         self.instructions = instructions
@@ -31,11 +33,15 @@ class Campaign(object):
 
         self.optionD = D
 
+        print ("\n\nOPTION A: ",A,"\nOPTION B: ",B,"\nOPTION C: ",C,"\nOPTION D: ",D)
+
+        self.Select()
+
     def Select(self):
 
         selected = ""
 
-        selection = input("What do you do?: ")
+        selection = input("\nWhat do you do?: ")
 
         if (selection == "A" or selection == "a"):
 
@@ -53,9 +59,21 @@ class Campaign(object):
 
             selected == self.optionD
 
-        return selected
+        else:
+
+            print ("That is not a valid option. Select A,B,C,or D.")
+
+            self.Select()
 
 
+        return(selected)
+
+    def Results(self, results):
+
+        self.results = results
+
+        print (results)
+        Location(self.location, self.description)
 
 class Item(object):
 
