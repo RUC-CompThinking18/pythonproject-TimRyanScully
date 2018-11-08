@@ -11,25 +11,46 @@ class Campaign(object):
 
         self.genre = name
 
-    def Location(self, name, description, choices):
+    def Location(self, name, description):
 
         self.location = name
 
         self.description  = description
 
-        self.choices = int(choices)
-
     def Instructions(self, instructions):
 
         self.instructions = instructions
 
-    def Option(self, name, input, choice):
+    def Options(self, A, B, C, D):
 
-        self.option = name
+        self.optionA = A
 
-        input = ("What do you do?\nEnter your choice here -> ")
+        self.optionB = B
 
-        if input ==
+        self.optionC = C
+
+        self.optionD = D
+
+    def Select(self, selection, selected):
+
+        selection = input("What do you do?: ")
+
+        if (selection == "A" or selection == "a"):
+
+            selected == self.optionA
+
+        elif (selection == "B" or selection == "b"):
+
+            selected == self.optionB
+
+        elif (selection == "C" or selection == "c"):
+
+            selected == self.optionC
+
+        elif (selection == "D" or selection == "d"):
+
+            selected == self.optionD
+
 
 
 class Item(object):
