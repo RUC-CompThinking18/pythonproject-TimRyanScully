@@ -31,25 +31,27 @@ class Campaign(object):
 
         self.optionD = D
 
-    def Select(self, selection):
+    def Select(self):
+
+        selected = ""
 
         selection = input("What do you do?: ")
 
         if (selection == "A" or selection == "a"):
 
-            self.selected == self.optionA
+            selected == self.optionA
 
         elif (selection == "B" or selection == "b"):
 
-            self.selected == self.optionB
+            selected == self.optionB
 
         elif (selection == "C" or selection == "c"):
 
-            self.selected == self.optionC
+            selected == self.optionC
 
         elif (selection == "D" or selection == "d"):
 
-            self.selected == self.optionD
+            selected == self.optionD
 
         return selected
 
