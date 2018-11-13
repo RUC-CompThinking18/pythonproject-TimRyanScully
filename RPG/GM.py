@@ -1,6 +1,15 @@
 from Dice import Dice
 from Character import *
 
+"""
+    There are always three things you need for a good Role Playing Game, be it
+over table with friends or on the computer by yourself. One are some rules, which
+the computer provides almost by default. The other is Player Characters, which are
+of course provided by the player class. The last this is a GameMaster, or GM.
+The classes below fill the core functions of the GM;
+
+"""
+
 class Campaign(object):
 
     def __init__(self, name):
@@ -11,19 +20,13 @@ class Campaign(object):
 
         self.genre = name
 
-    def Location(self, name, description):
+    def Location(self, name, description, A, B, C, D):
 
         self.location = name
 
         self.description  = description
 
         print (description)
-
-    def Instructions(self, instructions):
-
-        self.instructions = instructions
-
-    def Options(self, A, B, C, D):
 
         self.optionA = A
 
@@ -45,19 +48,19 @@ class Campaign(object):
 
         if (selection == "A" or selection == "a"):
 
-            selected == self.optionA
+            selected = self.optionA
 
         elif (selection == "B" or selection == "b"):
 
-            selected == self.optionB
+            selected = self.optionB
 
         elif (selection == "C" or selection == "c"):
 
-            selected == self.optionC
+            selected = self.optionC
 
         elif (selection == "D" or selection == "d"):
 
-            selected == self.optionD
+            selected = self.optionD
 
         else:
 
@@ -65,6 +68,7 @@ class Campaign(object):
 
             self.Select()
 
+        self.selected = selected
 
         return(selected)
 
@@ -72,8 +76,10 @@ class Campaign(object):
 
         self.results = results
 
-        print (results)
-        Location(self.location, self.description)
+        print ("\n",results,"\n")
+
+        self.Location(self.location, self.description, self.optionA, self.optionB, self.optionC, self.optionD)
+
 
 class Item(object):
 
