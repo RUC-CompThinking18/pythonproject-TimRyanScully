@@ -1,0 +1,11 @@
+The code runs and is well-commented and robust. I did get an error, which I'll paste below when I tried to enter my name. I can't comment too much more without an in-person conversation while looking at your code, which we can do tomorrow. It's possible that I wasn't running this the way you expected, so we can, again, talk in person. But changing your "input" calls to "raw_input" fixed the error below that I was getting.
+
+Traceback (most recent call last):
+  File "/anaconda2/lib/python2.7/runpy.py", line 174, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/anaconda2/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/Users/td242/Documents/Development/comp thinking repos/pythonproject-11-06-2018-10-20-54/TimRyanScully/RPG/__main__.py", line 9, in <module>
+    name = input("\n\nPlease enter your name :")
+  File "<string>", line 1, in <module>
+NameError: name 'Travis' is not defined
