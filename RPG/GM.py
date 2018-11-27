@@ -133,9 +133,9 @@ class Item(object): #It's not a good RPG unless you can collect some swag.
 
         self.type = "weapon" #set the type
 
-        self.attack = attack
+        self.attack = int(attack)
 
-        self.damage = damage
+        self.damage = int(damage)
 
 
     def Armor(self, ac):

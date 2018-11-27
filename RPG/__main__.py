@@ -39,13 +39,13 @@ Enemy.AC(10)
 
 #Jazz hands! Equipped automatically
 Hands = Item("Hands")
-Hands.Weapon(0,d3.roll)
+Hands.Weapon(0,3)
 Hands.Taken(Player)
 Hands.Equip()
 
 #Find your briefcase!
 Briefcase = Item("Briefcase")
-Briefcase.Weapon(2, d8.roll)
+Briefcase.Weapon(2, 8)
 
 #Fancy Suit for being Fancy
 Suit = Item("Suit")
@@ -53,7 +53,7 @@ Suit.Armor(2)
 
 #Switchblade; not exactly legal
 Switchblade = Item("Switchblade")
-Switchblade.Weapon(1,d4.roll)
+Switchblade.Weapon(1,4)
 Switchblade.Taken(Enemy)
 Switchblade.Equip()
 
@@ -105,6 +105,8 @@ def GameLoop(Location, index):
 
                 Combat()
 
+                index += 1
+
         else:
 
             Talk()
@@ -130,11 +132,14 @@ def GameLoop(Location, index):
         elif(Location == Alley):
 
             print("\n\n\"SCREW YOU!\" is what he screams as he charges you with a knife!")
+
             index += 1
 
         elif(Location == Fight):
 
             Combat()
+
+            index +=1
 
         else:
 
@@ -177,6 +182,8 @@ def GameLoop(Location, index):
 
             Combat()
 
+            index += 1
+
         else:
 
             Talk()
@@ -200,12 +207,7 @@ def GameLoop(Location, index):
 
             Talk()
 
-    if (Combat() == 1):
-
-        return 0
-
-
-    if (index < 5):
+    if (index <= 5):
 
         GameLoop(Locations[index], index)#Loop around according to the index, as stated above.
 
@@ -222,35 +224,39 @@ def Combat():
 
         print("The mugger attacks with his ", Enemy.weapon, " for ",Enemy.damage," damage!")
 
-        Combat()#loop de loop!
-
     elif (Fight.selected == Fight.optionB):
 
         print("\n\nYou give the man your wallet and he bolts. It sucks that you just got mugged, but it's better then being killed.\n\nYou make your way into the office building")
+
+        return 0
 
     elif (Fight.selected == Fight.optionC):
 
         print("\n\nYou run away like a coward. Fortunately, he doesn't follow you. Guess he didn't wanna risk mugging you in broad daylight. \n\n You take the bus to work and are an hour late...")
 
+        return 0
+
     elif (Fight.selected == Fight.optionD):
 
         print("\n\nI'll be a good GM and not allow that. You don't have that much on you...")
 
-        Combat()
-
     if(Player.hp <= 0):
 
-        print("\n\nYou fall to the floor dying and the mugger takes your belongings off your corpse. Maybe fighting him wasn't such a hot idea...")
+        print("\n\nYou fall to the floor dying and the mugger takes your belongings off your corpse. Maybe fighting him wasn't such a hot idea... \n\nTHE END")
 
-        return 1;
+        exit()
 
-    elif(Enemy.hp <= 3):
+    elif(Enemy.hp <= 0):
 
         print("\n\nThe mugger runs away with a whimper. You might have almost gotten killed, but you sure showed him what's what!")
 
         #No rewards; sorry but I am out of time!
 
-    GameLoop(Locations[5], 5)
+    else:
+
+        Fight.Menu()#prevents an infinite loop
+
+        Combat()#loop de loop!
 
     return 0
 
@@ -275,11 +281,15 @@ def Talk():
 
     END() #GAME OVER. YOU WIN?
 
+    exit()
+
+
+
 
 #This is essentially the GAME OVER SCREEN when you beat the game.
 def END():
 
-    print("\n\nYou enter your cubicle at long last. Slumping back into your chair, you can't help but feel exhausted. \nIt's STILL 6:30 AM and you have eight grueling hours to go. \nYour not sure why, but time seems to float away forever in this place. \nNo worries, though. Even in this infinite void of sadness that is your life, there's always one thing you can do. \nYou whip out your headphones and finishing updating your newest copy of LEVELGRINDER RPG. \nYou plug in and log in and enter a world of infinite possibilites. \nAfter all; life would be better if it were a game. \n\n\n ...right?")
+    print("\n\nYou enter your cubicle at long last. Slumping back into your chair, you can't help but feel exhausted. \nIt's STILL 6:30 AM and you have eight grueling hours to go. \nYour not sure why, but time seems to float away forever in this place. \nNo worries, though. Even in this infinite void of sadness that is your life, there's always one thing you can do. \nYou whip out your headphones and finishing updating your newest copy of LEVELGRINDER RPG. \nYou plug in and log in and enter a world of infinite possibilites. \nAfter all; life would be better if it were a game. \n\n\n ...right? \n\n THE END")
 
 
 GameLoop(Locations[0], 0) #THE GAME BEGINS
