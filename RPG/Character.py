@@ -78,6 +78,10 @@ class Character(object):
 
             other.hp -= self.damage #if the object is a character with hp, damage is dealt.
 
+    def Weapon(self, name):
+
+            self.weapon = str(name)
+
 class Ability(object): #This is another optional feature. In classic DnD characters have abilities that modify their rolls. Coders can invent abilities for this purpose.
 
     def __init__(self, name, mod): #its implemented as a seperate class, and the methods can be called on in the character class.

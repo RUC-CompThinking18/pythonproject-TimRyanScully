@@ -36,6 +36,8 @@ class Location(object): # could easily be a class in and of itself. Might make i
 
         self.optionD = D
 
+        self.selected = "" #we initialize a variable selected as an empty string
+
     def Menu(self): #We print out a menu this way. Makes it easier.
 
         print(self.description)
@@ -45,8 +47,6 @@ class Location(object): # could easily be a class in and of itself. Might make i
         self.Select() # and allow the player to select their option, of course.
 
     def Select(self):
-
-        self.selected = "" #we initialize a variable selected as an empty string
 
         selection = input("\nType the letter of your Selection: ") #What almost every DM or GM asks their players when its their turn to act. UPDATE: remade it so the instructions are more clear.
 
@@ -89,17 +89,29 @@ class Item(object): #It's not a good RPG unless you can collect some swag.
 
         self.owner = owner
 
+        self.equipped = False
+
     def Equip(self): #What happens when you use/wear/arm yourself with said item
 
-        if (self.equipped != None):
+        if (self.equipped != None and self.equipped == False):
+
+            self.equipped = True
 
             if (self.equipped == True): #check if equipped. Might need to reimplement. should work when the player equipps and unequipps the weapon.
 
-                self.owner.attack = int(attack) #add the weapons attack bonus
+                if(self.type == "weapon"):
 
-                self.owner.damage = int(damage) #and damage bonus
+                    self.owner.attack = self.attack #add the weapons attack bonus
 
-        self.equipped = True
+                    self.owner.damage = self.damage #and damage bonus
+
+                    self.owner.Weapon(self.name)
+
+                if (self.type == "armor"):
+
+                    self.owner.ac += self.ac
+
+        self.equipped = True #a little redundant, but necessary if equipped isn't specified
 
     def Unequip(self): #gotta unarm it sometimes.
 
@@ -109,26 +121,28 @@ class Item(object): #It's not a good RPG unless you can collect some swag.
 
             if (self.type == "weapon"): #Was originally in the 'Weapon' function, but it makes more sense here.
 
-                self.owner.attack -= int(attack)
+                self.owner.attack = 0
 
-                self.owner.damage -= int(damage)
+                self.owner.damage = 0
+
+            if (self.type == "armor"):
+
+                self.owner.ac -= self.ac
 
     def Weapon(self, attack, damage): #Declare it as a weapon.
 
         self.type = "weapon" #set the type
+
+        self.attack = attack
+
+        self.damage = damage
 
 
     def Armor(self, ac):
 
         self.type = "armor" #similar problems as with the weapon function. Might need to reimplement
 
-        if (self.equipped == True):
-
-            self.owner.ac += int(ac)
-
-        else:
-
-            self.owner.ac -= int(ac)
+        self.ac = ac
 
 
 class Reward(object): #The reason you came to the table and the thing that allows this to all become one giant hamster wheel...
